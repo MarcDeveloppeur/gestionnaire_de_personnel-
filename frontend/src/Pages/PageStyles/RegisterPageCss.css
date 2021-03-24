@@ -1,0 +1,41 @@
+.RegisterForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./bg.jpg');
+  width:30%;
+  height:30em;
+  padding:20px;
+  margin-top: 30px;
+}
+.inputRegisterBlock{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width:90%;
+  height:70%;
+}
+.RegisterformTitle{
+  color: blue;
+  text-align: center;
+  font-size: 3em;
+  margin-bottom: 30px;
+}
+.btn-enregistrer{
+  font-family: sans-serif;
+  color:black;
+  padding: 20px;
+  font-size: 1em;
+  border-radius: 20px;
+  border-style: none;
+  background-color: rgb(30,135,240);
+  width:60%;
+  height:50px;
+  cursor:pointer;
+}
+@media all and (max-width:920px){
+  .RegisterForm{
+    width:70%;
+  }
+}

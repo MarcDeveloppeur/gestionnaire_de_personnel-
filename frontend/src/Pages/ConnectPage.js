@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
+import './PageStyles/globalCss.css';
 import './PageStyles/ConnectPageCss.css';
 
 function ConnectPage() {
