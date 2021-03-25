@@ -4,6 +4,8 @@ import ConnectPage from './Pages/ConnectPage';
 import RegisterPage from './Pages/RegisterPage';
 import HomePage from './Pages/HomePage';
 import PageNotFound from './Pages/PageNotFound';
+import AddColloborateur from './Pages/addColloborateur';
+import CollobList from './Pages/collobList';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
             <Route exact path="/" component={ConnectPage}/>
             <Route path="/Register" component={RegisterPage}/>
             <Route path="/Home" component={HomePage}/>
+            <Route path="/add" component={AddColloborateur}/>
+            <Route path="/List" component={CollobList}/>
             <Route component={PageNotFound}/>
          </Router>
     </div>
