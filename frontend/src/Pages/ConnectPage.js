@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {Link,useHistory} from 'react-router-dom';
+import axios from 'axios';
 import './PageStyles/globalCss.css';
 import './PageStyles/ConnectPageCss.css';
 
@@ -38,7 +39,21 @@ function ConnectPage() {
     if(identifiant && motDePasse && motDePasse.length>6){
         setMessage('Connection effectué');
         message_element.style.backgroundColor="blue";
+
+        //envoyer les données vers la base pour l'authenfication
+        const data={
+          identifiant:identifiant,
+          motDePasse:motDePasse
+        }
+        axios.post('http://localhost:5000/addUser',data)
+        .then((res)=>{
+          console.log("utilisateur enregistrer");
+        })
+        .catch((err)=>{
+          console.error(err);
+        })
         history.push('/Home');
+
     }else{
        if(!identifiant){
          setMessage("Tous les champs sont obligatoires");

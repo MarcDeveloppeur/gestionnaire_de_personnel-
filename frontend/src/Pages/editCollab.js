@@ -46,11 +46,11 @@ function EditCollab(props) {
         }
        axios.put('http://localhost:5000/collab/updateCollab/'+id,data)
        .then(()=>{
-          history.push('/List');
        })
        .catch((err)=>{
          console.log(err);
        })
+         history.push('/List');
 
     }else{
        if(!name){

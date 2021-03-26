@@ -16,6 +16,7 @@ function CollobList() {
         setCollaborateurs(resultat.data);
       });
     },[]);
+
     //supprimer le produit
     const supprimer=(id)=>{
       axios.delete('http://localhost:5000/collab/deleteCollab/'+id)
@@ -23,21 +24,22 @@ function CollobList() {
         setCollaborateurs(collaborateurs.filter((collaborateur)=>collaborateur.collab_id!==id));
       });
       }
+
     //rechercher le collaborateur
-    /*const rechercher=(valeur)=>{
-      axios.get('http://localhost:5000/collab/recherche/'+valeur)
+    const find=(e)=>{
+      axios.get('http://localhost:5000/collab/recherche/'+e)
       .then((result)=>{
-        setCollaborateurs(result);
-      });
-    }*/
+        setCollaborateurs(result.data);
+      }).catch((err)=>console.log(err));
+    }
 
   return (
     <div className="ListeConteneur">
        <div className="listeContent">
             <h1 className="title">La liste des collaborateurs</h1>
             <div className="searchBlock">
-                <input type="text" className="search" placeholder="nom du collaborateur" />
-                <button /*onClick={rechercher(valeur)}*/ className="btn_search">rechercher</button>
+                <input type="text" className="search" value={valeur} onChange={(e)=>setValeur(e.target.value)} placeholder="nom du collaborateur" />
+                <button onClick={find(valeur)} className="btn_search">rechercher</button>
             </div>
             <div className="HeadBlock">
                 <button className="lien" onClick={()=>history.push('/add')}>Nouveau collaborateur</button>

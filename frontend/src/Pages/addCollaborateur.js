@@ -27,7 +27,7 @@ function AddCollaborateur() {
   }
 
   //La fonction pour connecter l'utilisateur
-  const connecter=(e)=>{
+  const enregistrer=(e)=>{
     e.preventDefault();
     const message_element=document.querySelector('.message');
 
@@ -49,7 +49,7 @@ function AddCollaborateur() {
           console.error(err)
         })
         history.push('/List');
-        
+
     }else{
        if(!name){
          setMessage("Tous les champs sont obligatoires");
@@ -69,7 +69,7 @@ function AddCollaborateur() {
     <div className="Container">
        <div className="RegisterForm">
            <h1 className="RegisterformTitle">Nouveau colloborateur</h1>
-           <form onSubmit={connecter}>
+           <form onSubmit={enregistrer}>
                <div className="inputAddBlock">
                   <input id="nom" type="text" value={name} onChange={(e)=>setName(e.target.value)} className="textInput" placeholder="Nom du colloborateur"/>
                   <input id="prenom" type="text" value={firstname} onChange={(e)=>setFirstname(e.target.value)} className="textInput" placeholder="Prenom du colloborateur"/>
