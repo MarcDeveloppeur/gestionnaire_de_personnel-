@@ -1,0 +1,81 @@
+.ListeConteneur{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width:100%;
+}
+.listeContent{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-image: url('./bg.jpg');
+   padding: 20px;
+   height:37em;
+   margin-top: 20px;
+   overflow: auto;
+}
+.title{
+  color:blue;
+  font-size: 2.2em;
+  font-family: sans-serif;
+  margin:50px 0px;
+  text-align: center;
+}
+.titreTableau{
+  color:white;
+  background-color: grey;
+}
+.tableau td{
+  border:1px black solid;
+  padding: 10px;
+  margin:10px;
+}
+.boutonAction{
+  color:white;
+  padding: 10px;
+  margin-left: 5px;
+  border-style: none;
+  cursor:pointer;
+}
+.modif{
+  background-color: green;
+}
+.suppr{
+  background-color: red;
+}
+.lien{
+  border-style: none;
+  margin-top:0px;
+  margin-right: 50px;
+  padding: 0px 10px;
+  height:50px;
+  width:200px;
+  color:white;
+  background-color: rgb(30,135,240);
+  border-radius: 20px;
+  cursor:pointer;
+}
+.HeadBlock{
+  display:flex;
+  margin: 40px 30px;
+}
+.searchBlock{
+  display: flex;
+  justify-content: center;
+}
+.search{
+  width:200px;
+  height:2em;
+  border-style: none;
+  border-radius: 20px;
+  padding: 10px;
+}
+.btn_search{
+  background-color: rgb(255,173,91);
+  width:150px;;
+  height:3em;
+  border-style: none;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+}

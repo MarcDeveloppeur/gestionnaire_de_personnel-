@@ -12,8 +12,8 @@ function HomePage() {
                <span className="userName">User_name</span>
            </div>
            <div className="linkBlock">
-               <Link to="" className="addLink Link">Nouveau colloborateur</Link>
-               <Link to="" className="listLink Link">Liste de vos colloborateur</Link>
+               <Link to="/add" className="addLink Link">Nouveau colloborateur</Link>
+               <Link to="/List" className="listLink Link">Liste de vos colloborateur</Link>
           </div>
         </div>
     </div>

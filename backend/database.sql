@@ -1,13 +1,13 @@
 CREATE DATABASE gestinnaire;
 
 CREATE TABLE user{
-  userId serial primary key,
-  email text,
-  motDePasse text
+  userId SERIAL PRIMARY KEY,
+  email TEXT NOT NULL,
+  motDePasse TEXT NOT NULL
 }
 
 CREATE TABLE collaborateur{
-   collabId serial primary key,
-   nom text,
-   prenom text
+   collabId SERIAL PRIMARY KEY,
+   nom TEXT NOT NULL,
+   prenom TEXT NOT NULL
 }

@@ -4,8 +4,9 @@ import ConnectPage from './Pages/ConnectPage';
 import RegisterPage from './Pages/RegisterPage';
 import HomePage from './Pages/HomePage';
 import PageNotFound from './Pages/PageNotFound';
-import AddColloborateur from './Pages/addColloborateur';
-import CollobList from './Pages/collobList';
+import AddColloborateur from './Pages/addCollaborateur';
+import CollobList from './Pages/collabList';
+import EditCollab from './Pages/editCollab';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/Home" component={HomePage}/>
             <Route path="/add" component={AddColloborateur}/>
             <Route path="/List" component={CollobList}/>
+            <Route path="/edit/:nom" component={EditCollab}/>
             <Route component={PageNotFound}/>
          </Router>
     </div>

@@ -35,6 +35,7 @@ function AddCollaborateur() {
     if(name && firstname ){
         setMessage('Enregistrement effectué');
         message_element.style.backgroundColor="blue";
+        history.push('/List');
     }else{
        if(!name){
          setMessage("Tous les champs sont obligatoires");

@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 import './PageStyles/globalCss.css';
 import './PageStyles/ConnectPageCss.css';
 
@@ -8,6 +8,7 @@ function ConnectPage() {
   const [identifiant,setIdentifiant]=useState('');
   const [motDePasse,setMotDePasse]=useState('');
   const [message,setMessage]=useState('');
+  const history=useHistory();
 
   const handleError=(type)=>{
 
@@ -37,6 +38,7 @@ function ConnectPage() {
     if(identifiant && motDePasse && motDePasse.length>6){
         setMessage('Connection effectué');
         message_element.style.backgroundColor="blue";
+        history.push('/Home');
     }else{
        if(!identifiant){
          setMessage("Tous les champs sont obligatoires");
