@@ -7,7 +7,7 @@ exports.addCollab=async(req,res)=>{
       if(req.body){
           const {nom,prenom}=req.body;
            const result=  await pool.query("INSERT INTO collaborateur (nom,prenom) VALUES ($1,$2) RETURNING * ",[nom,prenom]);
-            res.status(200).json("Collaborateur ajouté");
+            console.log('enregistrement éffectué');
         }
     }catch(err){
         console.error(err);
@@ -57,7 +57,7 @@ exports.deleteCollab=async(req,res)=>{
             const {nom,prenom}=req.body;
             const {id}=req.params;
              const result=  await pool.query("UPDATE collaborateur SET nom=$1 AND prenom=$2 WHERE collab_id=$3",[nom,prenom,id]);
-              res.status(200).json("Modification éffectuée");
+              console.log("Modification éffectuée");
             }
       }catch(err){
           console.error(err);

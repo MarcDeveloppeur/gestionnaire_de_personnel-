@@ -17,7 +17,7 @@ function App() {
             <Route path="/Home" component={HomePage}/>
             <Route path="/add" component={AddColloborateur}/>
             <Route path="/List" component={CollobList}/>
-            <Route path="/edit/:nom" component={EditCollab}/>
+            <Route path="/edit/:id" component={EditCollab}/>
             <Route component={PageNotFound}/>
          </Router>
     </div>

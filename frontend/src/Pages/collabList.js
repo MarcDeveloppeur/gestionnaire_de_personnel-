@@ -10,25 +10,26 @@ function CollobList() {
 
     useEffect(()=>{
   //Afficher la liste des collaborateurs lorsque la page est chargé
-      axios.get('http://localhost:5000/product/getAll')
+      axios.get('http://localhost:5000/collab/listeCollab')
       .then((resultat)=>{
+        console.log(resultat);
         setCollaborateurs(resultat.data);
       });
     },[]);
     //supprimer le produit
     const supprimer=(id)=>{
-      axios.delete('http://localhost:5000/product/deleteOne/'+id)
+      axios.delete('http://localhost:5000/collab/deleteCollab/'+id)
       .then(()=>{
-        setCollaborateurs(collaborateurs.filter((collaborateur)=>collaborateur._id!==id));
+        setCollaborateurs(collaborateurs.filter((collaborateur)=>collaborateur.collab_id!==id));
       });
       }
     //rechercher le collaborateur
-    const rechercher=(valeur)=>{
-      axios.get('http://localhost:5000/product/deleteOne/')
+    /*const rechercher=(valeur)=>{
+      axios.get('http://localhost:5000/collab/recherche/'+valeur)
       .then((result)=>{
         setCollaborateurs(result);
       });
-    }
+    }*/
 
   return (
     <div className="ListeConteneur">
@@ -36,7 +37,7 @@ function CollobList() {
             <h1 className="title">La liste des collaborateurs</h1>
             <div className="searchBlock">
                 <input type="text" className="search" placeholder="nom du collaborateur" />
-                <button onClick={rechercher(valeur)} className="btn_search">rechercher</button>
+                <button /*onClick={rechercher(valeur)}*/ className="btn_search">rechercher</button>
             </div>
             <div className="HeadBlock">
                 <button className="lien" onClick={()=>history.push('/add')}>Nouveau collaborateur</button>
@@ -53,12 +54,12 @@ function CollobList() {
                        <td>{collaborateur.prenom}</td>
                        <td>
                            <button className="boutonAction modif" onClick={()=>{
-                               const id=collaborateur._id;
-                               history.push('/EditerColloborateur/'+id);
+                               const id=collaborateur.collab_id;
+                               history.push('/Edit/'+id);
                            }}>Modifier</button>
                            {/*supprimer le collaborateur selon son id fornie en parametre dans le fonction supprimer*/}
                            <button className="boutonAction suppr" onClick={()=>{
-                                 const id=collaborateur._id;
+                                 const id=collaborateur.collab_id;
                                  supprimer(id);
                                }
                            }>Supprimer</button>

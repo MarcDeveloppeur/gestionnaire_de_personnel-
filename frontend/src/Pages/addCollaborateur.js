@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {Link,useHistory} from 'react-router-dom';
+import axios from 'axios';
 import './PageStyles/globalCss.css';
 import './PageStyles/RegisterPageCss.css';
 import './PageStyles/addColloborateurCss.css';
@@ -35,7 +36,20 @@ function AddCollaborateur() {
     if(name && firstname ){
         setMessage('Enregistrement effectué');
         message_element.style.backgroundColor="blue";
+
+        //envoyer les informations vers la base de données
+        const data={
+          nom:name,
+          prenom:firstname
+        }
+        axios.post('http://localhost:5000/collab/addCollab',data)
+        .then((res)=>{
+          console.log(res);
+        }).catch((err)=>{
+          console.error(err)
+        })
         history.push('/List');
+        
     }else{
        if(!name){
          setMessage("Tous les champs sont obligatoires");

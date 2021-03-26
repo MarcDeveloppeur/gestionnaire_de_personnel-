@@ -1,10 +1,11 @@
 import React,{useState} from 'react';
 import {Link,useHistory} from 'react-router-dom';
+import axios from 'axios';
 import './PageStyles/globalCss.css';
 import './PageStyles/RegisterPageCss.css';
 import './PageStyles/addColloborateurCss.css';
 
-function EditCollab() {
+function EditCollab(props) {
 
   const [name,setName]=useState('');
   const [firstname,setFirstname]=useState('');
@@ -35,7 +36,22 @@ function EditCollab() {
     if(name && firstname ){
         setMessage('Enregistrement effectué');
         message_element.style.backgroundColor="blue";
-        history.push('/List');
+
+        //mettre à jours la base de donnée
+        const id=props.match.params.id;
+        console.log(id);
+        const data={
+          nom:name,
+          prenom:firstname
+        }
+       axios.put('http://localhost:5000/collab/updateCollab/'+id,data)
+       .then(()=>{
+          history.push('/List');
+       })
+       .catch((err)=>{
+         console.log(err);
+       })
+
     }else{
        if(!name){
          setMessage("Tous les champs sont obligatoires");
