@@ -27,24 +27,32 @@ exports.addUser=(req,res)=>{
 
 //controlleur du connection d'utilisateur
 exports.connectUser=(req,res)=>{
+    try{
 
       //Verifier si l'email exite dans la base
       pool.query('SELECT * FROM users WHERE email=$1',[req.body.email])
       .then((result)=>{
 
           //comparer le mot de passe avec le mot de passe crypter
-          bcrypt.compare(result.mot_de_passe,req.body.motDePasse)
+          bcrypt.compare(req.body.motDePasse,result.mot_de_passe)
           .then(()=>{
 
               //Assigner un token à l'utilisateur pour qu'il puisse acceder au ressources de l'API
                const token=jwt.sign({
                  administrateur:true
                },"secretKey",{expiresIn:"24h"});
+
                res.status(200).send({token:token});
 
           }).catch(()=>res.status(404).send({message:"Mot de passe incorrect"}));
 
         })
         .catch(()=>res.status(404).send({message:"Utilisateur non touvé"}));
+
+    }catch(err){
+
+       console.error(err);
+
+    }
 
 }

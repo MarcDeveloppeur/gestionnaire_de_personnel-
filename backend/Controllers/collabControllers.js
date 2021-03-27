@@ -16,10 +16,13 @@ exports.addCollab=async(req,res)=>{
 }
 
 //Liste de tous les collaborateurs
-exports.listeCollab=async(req,res)=>{
+exports.listeCollab=(req,res)=>{
    try{
-       const result=  await pool.query("SELECT * FROM collaborateur");
-        res.status(200).json(result.rows);
+       pool.query("SELECT * FROM collaborateur")
+       .then((result)=>{
+            res.status(200).json(result.rows);
+       }).catch((err)=>console.log(err));
+
     }catch(err){
         console.error(err);
     }
@@ -56,7 +59,7 @@ exports.deleteCollab=async(req,res)=>{
         if(req.body && req.params){
             const {nom,prenom}=req.body;
             const {id}=req.params;
-             const result=  await pool.query("UPDATE collaborateur SET nom=$1 AND prenom=$2 WHERE collab_id=$3",[nom,prenom,id]);
+             const result=  await pool.query("UPDATE collaborateur SET nom=$1 , prenom=$2 WHERE collab_id=$3",[nom,prenom,id]);
               console.log("Modification éffectuée");
             }
       }catch(err){

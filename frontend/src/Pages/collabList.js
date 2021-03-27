@@ -5,16 +5,16 @@ import './PageStyles/collobListCss.css';
 
 function CollobList() {
    const [collaborateurs,setCollaborateurs]=useState([]);
-   const [valeur,setValeur]=useState('');
+   const [nom,setNom]=useState('');
    const history=useHistory();
 
     useEffect(()=>{
   //Afficher la liste des collaborateurs lorsque la page est chargé
-      axios.get('http://localhost:5000/collab/listeCollab')
+    axios.get('http://localhost:5000/collab/listeCollab')
       .then((resultat)=>{
         console.log(resultat);
         setCollaborateurs(resultat.data);
-      });
+      }).catch((err)=>console.log(err));
     },[]);
 
     //supprimer le produit
@@ -26,9 +26,11 @@ function CollobList() {
       }
 
     //rechercher le collaborateur
-    const find=(e)=>{
-      axios.get('http://localhost:5000/collab/recherche/'+e)
+    const find=()=>{
+      const valeur=nom;
+      axios.get('http://localhost:5000/collab/recherche/'+valeur)
       .then((result)=>{
+        console.log(result);
         setCollaborateurs(result.data);
       }).catch((err)=>console.log(err));
     }
@@ -36,22 +38,29 @@ function CollobList() {
   return (
     <div className="ListeConteneur">
        <div className="listeContent">
-            <h1 className="title">La liste des collaborateurs</h1>
-            <div className="searchBlock">
-                <input type="text" className="search" value={valeur} onChange={(e)=>setValeur(e.target.value)} placeholder="nom du collaborateur" />
-                <button onClick={find(valeur)} className="btn_search">rechercher</button>
-            </div>
-            <div className="HeadBlock">
-                <button className="lien" onClick={()=>history.push('/add')}>Nouveau collaborateur</button>
-            </div>
+            <div className="Block">
+                 <h1 className="title">La liste des collaborateurs</h1>
+                 <form onSubmit={find} className="searchBlock">
+                     <input type="text" className="search" value={nom} onChange={(e)=>setNom(e.target.value)} placeholder="nom du collaborateur" />
+                     <input type="submit" className="btn_search" value="Rechercher"/>
+                 </form>
+                 <div className="HeadBlock">
+                     <button className="lien" onClick={()=>history.push('/add')}>Nouveau collaborateur</button>
+                 </div>
+           </div>
             <table className="tableau">
                 <thead>
+                  <tr>
                     <td className="titreTableau">Nom du collaborateur</td>
                     <td className="titreTableau">Prenom du collaborateur</td>
                     <td className="titreTableau">Actions</td>
+                  </tr>
                 </thead>
             <tbody>
-                     {collaborateurs.map((collaborateur,index)=><tr key={index}>
+                  {
+                       collaborateurs.map((collaborateur,index)=>{
+                      return(
+                       <tr key={index}>
                        <td>{collaborateur.nom}</td>
                        <td>{collaborateur.prenom}</td>
                        <td>
@@ -66,7 +75,10 @@ function CollobList() {
                                }
                            }>Supprimer</button>
                        </td>
-                     </tr>)}
+                     </tr>
+                     );
+                   })
+                 }
                 </tbody>
             </table>
        </div>
